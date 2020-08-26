@@ -11,7 +11,7 @@ jobs:
       
       - name: Remove extra packages
         run: |
-          sudo apt-get purge mysql-server
+          sudo apt-get purge mysql-server mysql-client
       - name: Build edx
         run: |
           set -x
