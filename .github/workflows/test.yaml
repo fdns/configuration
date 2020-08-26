@@ -12,6 +12,8 @@ jobs:
       - name: Remove extra packages
         run: |
           sudo apt-get purge mysql-server mysql-client
+          sudo rm /var/lib/mysql/debian-*.flag
+
       - name: Build edx
         run: |
           set -x
