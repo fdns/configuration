@@ -1,0 +1,18 @@
+name: Build ansible release
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Build edx
+        run: |
+          export OPENEDX_RELEASE=master
+          echo 'EDXAPP_LMS_BASE: "localhost"' > config.yml
+          echo 'EDXAPP_CMS_BASE: "studio.localhost"' >> config.yml
+          sudo bash util/install/ansible-bootstrap.sh
+          bash util/install/generate-passwords.sh
+          bash util/install/native.sh
