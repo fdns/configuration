@@ -8,8 +8,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@master
+      
+      - name: Remove extra packages
+        run: |
+          sudo apt-get purge mysql-server
       - name: Build edx
         run: |
+          set -x
           export OPENEDX_RELEASE=master
           echo 'EDXAPP_LMS_BASE: "localhost"' > config.yml
           echo 'EDXAPP_CMS_BASE: "studio.localhost"' >> config.yml
